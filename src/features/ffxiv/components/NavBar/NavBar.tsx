@@ -1,11 +1,11 @@
-import { AppBar, Container, Toolbar, Button } from '@mui/material';
+import { AppBar, Container, Toolbar, Button, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { useNavigate } from 'react-router';
 
 const pages = [
     {
-        Name: 'Item',
-        Path: "item"
+        Name: 'Character',
+        Path: "character"
     }, 
     {
         Name: 'Free Company',
@@ -20,6 +20,13 @@ export const NavBar = () => {
         <AppBar position="static">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
+                    <Typography
+                        variant="h6"
+                        noWrap
+                        component="div"
+                        sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}>      
+                        Final Fantasy XIV
+                    </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
                             <Button
