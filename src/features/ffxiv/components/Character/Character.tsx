@@ -1,12 +1,19 @@
-import { Box, CircularProgress, Container, Table, TableCell, TableRow, Typography, TableBody } from '@mui/material';
+import { Box, CircularProgress, Container, Table, TableCell, TableRow, Typography, TableBody, Grid, ButtonBase, styled} from '@mui/material';
 import { useEffect, useState } from 'react';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
+
+const Img = styled('img')({
+  display: 'block',
+  maxWidth: '70%',
+  maxHeight: '70%',
+});
+
 
 export const Character = () => {
   const [data, setData] = useState<any>();
   const [classRowData, setClassRowData] = useState<any[]>([]);
   const characterId = '5289891';
-
+  
   const classColumns: GridColDef[] = [
     {
       field: 'class',
@@ -49,34 +56,29 @@ export const Character = () => {
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}>      
             {data.Character.Name}
         </Typography>
-        <Box
-          component="img"
-          sx={{
-            height: "30%",
-            width: "30%",
-          }}
-          src={data.Character.Portrait}
-        />
-        <Table>
-          <TableBody>
-            <TableRow>
-              <TableCell variant="head">Active Class</TableCell>
-              <TableCell>{data.Character.ActiveClassJob.UnlockedState.Name}</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell variant="head">Bio</TableCell>
-              <TableCell>{data.Character.Bio}</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell variant="head">Server</TableCell>
-              <TableCell>{data.Character.Server}</TableCell>
-            </TableRow>
-            <TableRow>
-              < TableCell variant="head">Name Day</TableCell>
-                <TableCell>{data.Character.Nameday}</TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
+        <Grid container>
+          <Grid item>
+            <Img alt="complex" src={data.Character.Portrait} />
+          </Grid>
+          <Grid item >
+            <Table>
+              <TableBody>
+                <TableRow>
+                  <TableCell variant="head">Active Class</TableCell>
+                  <TableCell>{data.Character.ActiveClassJob.UnlockedState.Name}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell variant="head">Server</TableCell>
+                  <TableCell>{data.Character.Server}</TableCell>
+                </TableRow>
+                <TableRow>
+                  < TableCell variant="head">Name Day</TableCell>
+                    <TableCell>{data.Character.Nameday}</TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>            
+          </Grid>
+        </Grid>
         <DataGrid sx={{ height: '50vh', width: '100%' }} columns={classColumns} rows={classRowData} checkboxSelection></DataGrid>           
       </Box>)
   }
